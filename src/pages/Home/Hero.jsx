@@ -58,6 +58,24 @@ const Hero = () => {
     },
   };
 
+  const marqueeImages = [
+    '/src/assets/images/Group-157.webp',
+    '/src/assets/images/Group-158.webp',
+    '/src/assets/images/Group-159.webp',
+    '/src/assets/images/Group-160.webp',
+    '/src/assets/images/Group-161.webp',
+    '/src/assets/images/Group-162.webp',
+    '/src/assets/images/Group-163.webp',
+    '/src/assets/images/Group-165.webp',
+    '/src/assets/images/Group-166.webp',
+    '/src/assets/images/Group-167.webp',
+    '/src/assets/images/Group-168.webp',
+    // '/src/assets/images/uxdlab-logo.webp',
+  ];
+
+  // Duplicate images for continuous scrolling
+  const duplicatedImages = [...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages];
+
   return (
     <>
       <section ref={ref} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100">
@@ -189,7 +207,7 @@ const Hero = () => {
          >
   Empowering Businesses with
   <motion.div
-    className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
+    className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent p-2"
     animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
     transition={{ duration: 8, repeat: Infinity }}
   >
@@ -201,13 +219,12 @@ const Hero = () => {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed font-medium"
+            className="text-lg md:text-xl text-gray-700 mb-10 max-w-4xl mx-auto leading-relaxed font-medium"
           >
-            Your strategic partner for transforming ideas into market-ready digital products.
-            <br />
-            <span className="text-sm text-gray-600 mt-3 block">
-              Trusted by 1200+ global brands, startups, and enterprises for AI-driven innovation.
-            </span>
+            Our team translates visionary concepts into advanced technological solutions,  harnessing
+            <br />   
+innovation to bring your ideas to market with precision and impact.
+             
           </motion.p>
 
           {/* CTA Buttons */}
@@ -252,7 +269,7 @@ const Hero = () => {
               }}
             >
               <Button
-                className="group bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white px-8 py-3 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                className="group bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--secondary)] hover:to-[var(--secondary)] text-white px-8 py-3 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-0"
               >
                 Get Started
                 <motion.div
@@ -291,59 +308,28 @@ const Hero = () => {
         </motion.div>
 
         {/* Marquee Section - Inside Hero with 10vh gap from bottom */}
-        <div className="absolute w-full bg-gradient-to-r from-pink-200 via-rose-200 to-pink-300 py-6 overflow-hidden border-t border-pink-300 shadow-xl" style={{ bottom: "10vh" }}>
-          <motion.div
-            className="flex gap-12 whitespace-nowrap"
-            animate={{ 
-              x: [0, -2000],
-            }}
-            transition={{
-              x: {
-                duration: 50,
-                repeat: Infinity,
-                ease: "linear",
-                repeatType: "loop",
-              },
-            }}
-          >
-            {[
-              "✨ AI Development",
-              "☁️ Cloud Solutions",
-              "📱 Mobile Apps",
-              "🔧 DevOps",
-              "🚀 Microservices",
-              "🔐 Security",
-              "⚡ Performance",
-              "🌐 Scalability",
-              "✨ AI Development",
-              "☁️ Cloud Solutions",
-              "📱 Mobile Apps",
-              "🔧 DevOps",
-              "🚀 Microservices",
-              "🔐 Security",
-              "⚡ Performance",
-              "🌐 Scalability",
-            ].map((text, i) => (
-              <motion.div
-                key={i}
-                className="flex items-center gap-12 px-8"
-                whileHover={{ 
-                  scale: 1.1,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
-              >
-                <span className="text-xs md:text-sm font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent flex-shrink-0 tracking-wider">
-                  {text}
-                </span>
-                <span className="text-2xl text-pink-400">•</span>
-              </motion.div>
-            ))}
-          </motion.div>
+<div
+  className="absolute w-full bg-gradient-to-r from-primary via-secondary to-pink-400 overflow-hidden shadow-xl"
+  style={{ bottom: "10vh" }}
+>
+  <div className="marquee">
+    <div className="marquee-inner">
+      {duplicatedImages.map((image, i) => (
+        <div className="marquee-item" key={i}>
+          <img src={image} alt="" className="logo" />
         </div>
+      ))}
+      {duplicatedImages.map((image, i) => (
+        <div className="marquee-item" key={`dup-${i}`}>
+          <img src={image} alt="" className="logo" />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+
+
       </section>
     </>
   );

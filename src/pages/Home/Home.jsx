@@ -6,12 +6,14 @@ import Services from './Services'
 import WhyUs from './WhyUs'
 import Testimonials from './Testimonials'
 import StrategicPath from './StrategicPath'
+ 
 
 const Home = () => {
   return (
    <>
    <Navbar />
    <Hero />
+   {/* <Hero2 /> */}
    {/* <Partners /> */}
    {/* <Services /> */}
    {/* <WhyUs /> */}
