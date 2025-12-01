@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Bot, Cloud, Smartphone, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -57,6 +57,22 @@ const marqueeStyles = `
 `;
 
 const Hero = () => {
+  const gradients = useMemo(() => [
+    'linear-gradient(to bottom right, #FF69B4, #C71585)',
+    'linear-gradient(to bottom, #FF6347, #DC143C)',
+    'linear-gradient(to right, #FF1493, #8B0000)',
+    'linear-gradient(to bottom left, #DB7093, #FF69B4)',
+  ], []);
+
+  const [currentGradient, setCurrentGradient] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentGradient((prev) => (prev + 1) % gradients.length);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [gradients.length]);
+
   // Memoized floating items to prevent recreation on every render
   const floatingItems = useMemo(() => [
     { Icon: Bot, x: -5, y: 15, delay: 0, color: 'from-pink-500 to-rose-500', title: 'AI Assistant' },
@@ -108,8 +124,19 @@ const Hero = () => {
       
       <section
         role="banner"
-        className="relative w-full min-h-[calc(100vh-16vh)] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#FFF4EE] to-[#FFFAF2]"
+        className="relative w-full min-h-[calc(100vh-16vh)] md:min-h-screen flex items-center justify-center overflow-hidden"
       >
+        {/* Animated Background Gradients */}
+        {gradients.map((grad, i) => (
+          <motion.div
+            key={i}
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: grad }}
+            animate={{ opacity: currentGradient === i ? 1 : 0 }}
+            transition={{ duration: 3 }}
+          />
+        ))}
+
         {/* Static Background Gradients - No animation for performance */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
@@ -176,7 +203,7 @@ const Hero = () => {
           <motion.div variants={itemVariants} className="mb-2 md:mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/50 backdrop-blur-md border border-pink-200 hover:border-pink-400/80 transition-colors duration-300">
               <Sparkles className="w-4 h-4 text-pink-600 animate-spin" style={{ animationDuration: '3s' }} />
-              <span className="text-xs md:text-sm font-semibold text-gray-800">
+              <span className="text-xs md:text-sm font-semibold text-gray-300">
                 AI-Powered Innovation
               </span>
             </div>
@@ -185,7 +212,7 @@ const Hero = () => {
           {/* Main Heading */}
           <motion.div
             variants={itemVariants}
-            className="text-xs md:text-sm lg:text-md font-bold mb-6 leading-loose text-gray-900"
+            className="text-xs md:text-sm lg:text-md font-bold mb-6 leading-loose text-gray-200"
           >
             <h1>
               <span className="text-3xl md:text-5xl font-bold">
@@ -203,7 +230,7 @@ const Hero = () => {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-md md:text-xl text-gray-700 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed font-medium"
+            className="text-md md:text-xl text-gray-300 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed font-medium"
           >
             Our team translates visionary concepts into advanced technological solutions,
             harnessing innovation to bring your ideas to market with precision and impact.
@@ -234,14 +261,14 @@ const Hero = () => {
             variants={itemVariants}
             className="pt-1 md:pt-10 border-t border-pink-200/50 mb-10 md:mb-0"
           >
-            <p className="text-sm text-gray-600 mb-4 uppercase tracking-wider font-semibold">
+            <p className="text-sm text-gray-400 mb-4 uppercase tracking-wider font-semibold">
               Trusted by Industry Leaders
             </p>
             <div className="flex justify-center items-center flex-wrap gap-2 md:gap-4">
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className="text-xs font-semibold text-gray-700 px-2 md:px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-pink-200/50 hover:border-pink-400 hover:scale-105 transition-all duration-300"
+                  className="text-xs font-semibold text-gray-300 px-2 md:px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-pink-200/50 hover:border-pink-400 hover:scale-105 transition-all duration-300"
                 >
                   ✓ {badge}
                 </div>
