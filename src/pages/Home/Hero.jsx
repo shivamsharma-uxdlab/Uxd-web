@@ -1,166 +1,163 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Sparkles, ArrowRight, Zap, Bot, Cloud, Smartphone, Code2, Cpu } from 'lucide-react';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowRight, Bot, Cloud, Smartphone, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import group157 from '/src/assets/images/Group-157.webp';
+import group158 from '/src/assets/images/Group-158.webp';
+import group159 from '/src/assets/images/Group-159.webp';
+import group160 from '/src/assets/images/Group-160.webp';
+import group161 from '/src/assets/images/Group-161.webp';
+import group162 from '/src/assets/images/Group-162.webp';
+import group163 from '/src/assets/images/Group-163.webp';
+import group165 from '/src/assets/images/Group-165.webp';
+import group166 from '/src/assets/images/Group-166.webp';
+import group167 from '/src/assets/images/Group-167.webp';
+import group168 from '/src/assets/images/Group-168.webp';
+
+// CSS for smooth marquee - add this to your CSS file
+const marqueeStyles = `
+  .marquee-container {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+  }
+  
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .marquee-logo {
+    flex-shrink: 0;
+    height: 80px;
+    width: auto;
+    margin: 0 24px;
+    object-fit: contain;
+  }
+
+  @media (min-width: 768px) {
+    .marquee-logo {
+      height: 100px;
+      margin: 0 32px;
+    }
+  }
+`;
 
 const Hero = () => {
-  const ref = useRef(null);
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 100]);
+  // Memoized floating items to prevent recreation on every render
+  const floatingItems = useMemo(() => [
+    { Icon: Bot, x: -5, y: 15, delay: 0, color: 'from-pink-500 to-rose-500', title: 'AI Assistant' },
+    { Icon: Smartphone, x: 88, y: 20, delay: 0.2, color: 'from-purple-500 to-pink-500', title: 'Mobile Apps' },
+    { Icon: Cloud, x: 8, y: 60, delay: 0.4, color: 'from-blue-500 to-cyan-500', title: 'Cloud Solutions' },
+    { Icon: Code2, x: 85, y: 65, delay: 0.6, color: 'from-indigo-500 to-purple-500', title: 'Custom Development' },
+  ], []);
 
-  // Animated gradient circles
-  const circles = Array.from({ length: 6 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 300 + 100,
-    x: Math.random() * 80 + 10,
-    y: Math.random() * 80 + 10,
-    duration: Math.random() * 4 + 6,
-    delay: i * 0.2,
-  }));
+  // Memoized marquee images
+  const marqueeImages = useMemo(() => [
+    group157, group158, group159, group160, group161,
+    group162, group163, group165, group166, group167, group168,
+  ], []);
 
-  const floatingItems = [
-    { Icon: Bot, x: -5, y: 15, delay: 0, color: 'from-pink-500 to-rose-500' },
-    { Icon: Smartphone, x: 88, y: 20, delay: 0.3, color: 'from-purple-500 to-pink-500' },
-    { Icon: Cloud, x: 8, y: 60, delay: 0.6, color: 'from-blue-500 to-cyan-500' },
-    { Icon: Code2, x: 85, y: 65, delay: 0.9, color: 'from-indigo-500 to-purple-500' },
-  ];
+  // Only duplicate twice for seamless loop
+  const duplicatedImages = useMemo(() => [...marqueeImages, ...marqueeImages], [marqueeImages]);
 
-  const containerVariants = {
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-        duration: 1.2,
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
       },
     },
-  };
+  }), []);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+  const itemVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 1,
-        ease: [0.23, 1, 0.320, 1], // cubic-bezier for smooth easing
+        type: "tween",
+        duration: 0.5,
+        ease: "easeOut",
       },
     },
-  };
+  }), []);
 
-  const floatingVariants = {
-    floating: {
-      y: [0, -25, 0],
-      x: [0, 15, 0],
-      rotate: [0, 8, 0],
-    },
-  };
-
-  const marqueeImages = [
-    '/src/assets/images/Group-157.webp',
-    '/src/assets/images/Group-158.webp',
-    '/src/assets/images/Group-159.webp',
-    '/src/assets/images/Group-160.webp',
-    '/src/assets/images/Group-161.webp',
-    '/src/assets/images/Group-162.webp',
-    '/src/assets/images/Group-163.webp',
-    '/src/assets/images/Group-165.webp',
-    '/src/assets/images/Group-166.webp',
-    '/src/assets/images/Group-167.webp',
-    '/src/assets/images/Group-168.webp',
-    // '/src/assets/images/uxdlab-logo.webp',
-  ];
-
-  // Duplicate images for continuous scrolling
-  const duplicatedImages = [...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages, ...marqueeImages];
+  const trustBadges = useMemo(() => [
+    'AWS Partner', 'ISO 27001', 'SOC 2 Certified', 'Google Developer'
+  ], []);
 
   return (
     <>
-      <section ref={ref} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100">
-        {/* Animated Background Circles */}
+      <style>{marqueeStyles}</style>
+      
+      <section
+        role="banner"
+        className="relative w-full min-h-[calc(100vh-16vh)] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#FFF4EE] to-[#FFFAF2]"
+      >
+        {/* Static Background Gradients - No animation for performance */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Primary gradient sphere */}
-          <motion.div
+          <div
             className="absolute w-96 h-96 bg-gradient-to-br from-pink-400/30 via-rose-400/25 to-transparent rounded-full blur-3xl"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{ top: "-10%", right: "-5%" }}
+            style={{ top: "-10%", right: "-5%", willChange: "auto" }}
           />
-
-          {/* Secondary gradient sphere */}
-          <motion.div
+          <div
             className="absolute w-96 h-96 bg-gradient-to-br from-pink-500/30 via-fuchsia-400/25 to-transparent rounded-full blur-3xl"
-            animate={{
-              x: [0, -100, 0],
-              y: [0, -50, 0],
-            }}
-            transition={{
-              duration: 18,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-            style={{ bottom: "-10%", left: "-5%" }}
+            style={{ bottom: "-10%", left: "-5%", willChange: "auto" }}
           />
-
-          {/* Tertiary gradient sphere */}
-          <motion.div
+          <div
             className="absolute w-72 h-72 bg-gradient-to-br from-rose-400/25 via-pink-400/20 to-transparent rounded-full blur-3xl"
-            animate={{
-              x: [0, 50, 0],
-              y: [0, -50, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2,
-            }}
-            style={{ top: "50%", left: "50%" }}
+            style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
           />
         </div>
 
-        {/* Floating Icons with Glass Effect */}
+        {/* Floating Icons - Simplified animation */}
         {floatingItems.map((item, i) => (
           <motion.div
             key={i}
-            className="absolute hidden lg:flex items-center justify-center"
+            className="absolute hidden md:flex items-center justify-center"
             style={{
               left: `${item.x}%`,
               top: `${item.y}%`,
+              willChange: "transform, opacity",
             }}
-            animate={floatingVariants.floating}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
-              duration: 6 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: item.delay,
+              duration: 0.5,
+              delay: item.delay + 0.5,
+              ease: "easeOut",
             }}
           >
             <motion.div
-              className={`p-5 bg-gradient-to-br ${item.color} backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl hover:shadow-3xl`}
-              whileHover={{
-                scale: 1.15,
-                rotate: 5,
-              }}
+              className={`p-4 md:p-5 bg-gradient-to-br ${item.color} backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl cursor-pointer`}
+              animate={{ y: [0, -10, 0] }}
               transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 20,
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5,
               }}
+              whileHover={{ scale: 1.1 }}
+              title={item.title}
             >
               <item.Icon
-                size={56}
-                className="text-white drop-shadow-lg"
+                className="w-12 h-12 md:w-14 md:h-14 text-white drop-shadow-lg"
                 strokeWidth={1.5}
               />
             </motion.div>
@@ -169,167 +166,112 @@ const Hero = () => {
 
         {/* Main Content */}
         <motion.div
-          className="relative z-10 px-4 py-10 max-w-5xl mx-auto text-center"
-          style={{ paddingBottom: "20vh" }}
+          className="relative z-10 px-2 md:px-4 max-w-5xl mx-auto text-center mt-6 md:mt-0"
+          style={{ paddingBottom: "10vh" }}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Badge with animation */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-6"
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/50 backdrop-blur-md border border-pink-200 hover:border-pink-400/80 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                <Sparkles className="w-4 h-4 text-pink-600" />
-              </motion.div>
-              <span className="text-sm font-semibold text-gray-800">
+          {/* Badge */}
+          <motion.div variants={itemVariants} className="mb-2 md:mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/50 backdrop-blur-md border border-pink-200 hover:border-pink-400/80 transition-colors duration-300">
+              <Sparkles className="w-4 h-4 text-pink-600 animate-spin" style={{ animationDuration: '3s' }} />
+              <span className="text-xs md:text-sm font-semibold text-gray-800">
                 AI-Powered Innovation
               </span>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Main Heading */}
-         <motion.h1
-           variants={itemVariants}
-           className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 leading-loose text-gray-900"
-         >
-  Empowering Businesses with
-  <motion.div
-    className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent p-2"
-    animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
-    transition={{ duration: 8, repeat: Infinity }}
-  >
-    Cutting-Edge AI-Driven
-  </motion.div>
-  Digital Innovation
-</motion.h1>
+          <motion.div
+            variants={itemVariants}
+            className="text-xs md:text-sm lg:text-md font-bold mb-6 leading-loose text-gray-900"
+          >
+            <h1>
+              <span className="text-3xl md:text-5xl font-bold">
+                Transforming visions into
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent p-0 md:p-2 text-3xl md:text-5xl font-bold">
+                Cutting-Edge AI-Driven
+              </span>
+              <br />
+              <span className="text-3xl md:text-5xl font-bold">Tech Solutions</span>
+            </h1>
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-700 mb-10 max-w-4xl mx-auto leading-relaxed font-medium"
+            className="text-md md:text-xl text-gray-700 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed font-medium"
           >
-            Our team translates visionary concepts into advanced technological solutions,  harnessing
-            <br />   
-innovation to bring your ideas to market with precision and impact.
-             
+            Our team translates visionary concepts into advanced technological solutions,
+            harnessing innovation to bring your ideas to market with precision and impact.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            className="flex flex-row gap-4 justify-center items-center mb-6 md:mb-12"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 30,
-              }}
+            <Button
+              className="group bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              <Button
-                className="group bg-gray-900 text-gray-700 hover:bg-gray-800 px-8 py-3 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300"
-              >
-                View Our Work
-                <motion.div
-                  className="ml-2"
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <ArrowRight className="w-4 h-4" />
-                </motion.div>
-              </Button>
-            </motion.div>
+              View Our Work
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
 
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 30,
-              }}
+            <Button
+              className="group bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--secondary)] hover:to-[var(--secondary)] text-white px-8 py-3 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-0 hover:scale-105 active:scale-95"
             >
-              <Button
-                className="group bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--secondary)] hover:to-[var(--secondary)] text-white px-8 py-3 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-0"
-              >
-                Get Started
-                <motion.div
-                  className="ml-2"
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <ArrowRight className="w-4 h-4" />
-                </motion.div>
-              </Button>
-            </motion.div>
+              Get Started
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </motion.div>
 
           {/* Trust Badges */}
           <motion.div
             variants={itemVariants}
-            className="pt-10 border-t border-pink-200/50"
+            className="pt-1 md:pt-10 border-t border-pink-200/50 mb-10 md:mb-0"
           >
-            <p className="text-xs text-gray-600 mb-4 uppercase tracking-wider font-semibold">Trusted by Industry Leaders</p>
-            <div className="flex justify-center items-center flex-wrap gap-4">
-              {['AWS Partner', 'ISO 27001', 'SOC 2 Certified', 'Google Developer'].map((badge, i) => (
-                <motion.div
+            <p className="text-sm text-gray-600 mb-4 uppercase tracking-wider font-semibold">
+              Trusted by Industry Leaders
+            </p>
+            <div className="flex justify-center items-center flex-wrap gap-2 md:gap-4">
+              {trustBadges.map((badge, i) => (
+                <div
                   key={i}
-                  className="text-xs font-semibold text-gray-700 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-pink-200/50 hover:border-pink-400 transition-all duration-300"
-                  whileHover={{ scale: 1.1 }}
+                  className="text-xs font-semibold text-gray-700 px-2 md:px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-pink-200/50 hover:border-pink-400 hover:scale-105 transition-all duration-300"
                 >
                   ✓ {badge}
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Marquee Section - Inside Hero with 10vh gap from bottom */}
-<div
-  className="absolute w-full bg-gradient-to-r from-primary via-secondary to-pink-400 overflow-hidden shadow-xl"
-  style={{ bottom: "10vh" }}
->
-  <div className="marquee">
-    <div className="marquee-inner">
-      {duplicatedImages.map((image, i) => (
-        <div className="marquee-item" key={i}>
-          <img src={image} alt="" className="logo" />
-        </div>
-      ))}
-      {duplicatedImages.map((image, i) => (
-        <div className="marquee-item" key={`dup-${i}`}>
-          <img src={image} alt="" className="logo" />
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-
-
-
+        {/* Partners Marquee - Pure CSS Animation */}
+        <motion.div
+          className="absolute w-full bg-gradient-to-r from-primary via-secondary to-pink-400 overflow-hidden shadow-xl bottom-[4vh] md:bottom-[10vh]"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
+        >
+          <div className="marquee-container h-20 md:h-24 flex items-center">
+            <div className="marquee-track">
+              {duplicatedImages.map((image, i) => (
+                <img
+                  key={i}
+                  src={image}
+                  alt={`Partner logo ${(i % 11) + 1}`}
+                  className="marquee-logo h-auto"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </section>
     </>
   );

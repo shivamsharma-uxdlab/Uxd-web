@@ -2,10 +2,14 @@ import React from 'react'
 import Navbar from './Navbar'
 import Hero from './Hero'
 import Partners from './Partners'
-import Services from './Services'
+import TrustedBy from './TrustedBy'
 import WhyUs from './WhyUs'
 import Testimonials from './Testimonials'
 import StrategicPath from './StrategicPath'
+import Services from '../Services'
+import AwardsSection from './AwardsSection'
+import MediaMentionsSection from './MediaMentionsSection'
+import FeatureWork from './FeatureWork'
  
 
 const Home = () => {
@@ -17,8 +21,15 @@ const Home = () => {
    {/* <Partners /> */}
    {/* <Services /> */}
    {/* <WhyUs /> */}
-   {/* <Testimonials /> */}
-   {/* <StrategicPath /> */}
+   <Testimonials />
+   <StrategicPath />
+     {/* <Hero2 /> */}
+      <TrustedBy />
+      <Services />
+        {/* <Partners /> */}
+        {/* <AwardsSection /> */}
+        {/* <MediaMentionsSection /> */}
+        <FeatureWork />
    </>
   )
 }

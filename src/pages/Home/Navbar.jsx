@@ -69,11 +69,11 @@ const Navbar = () => {
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-pink-100/30 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -83,7 +83,7 @@ const Navbar = () => {
               className="flex-shrink-0"
             >
               <Link to="/">
-                <img src={logo} alt="UXD Lab Logo" className="w-40 h-10" />
+                <img src={logo} alt="UXD Lab Logo" className=" w-32 h-8 md:w-40 md:h-10 " />
               </Link>
             </motion.div>
 
@@ -232,7 +232,7 @@ const Navbar = () => {
       </motion.nav>
 
       {/* Spacer for fixed navbar */}
-      <div className="h-20" />
+      <div className="h-16 md:h-20" />
     </>
   );
 };
