@@ -83,7 +83,7 @@ const Navbar = () => {
               className="flex-shrink-0"
             >
               <Link to="/">
-                <img src={logo} alt="UXD Lab Logo" className=" w-32 h-8 md:w-40 md:h-10 " />
+                <img src={logo} alt="UXD Lab Logo" className=" w-28 h-7 md:w-32 md:h-8 " />
               </Link>
             </motion.div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
-import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowUpRight, Sparkles, ArrowLeft, ArrowRight } from 'lucide-react';
 import image from '../../assets/images/sven-kucinic-Z0KjmjxUsKs-unsplash 1 (1).png';
 
 // Constant Data
@@ -53,7 +53,10 @@ const PROJECT_LENGTH = PROJECT_DATA.length;
 // ============ MEMOIZED SUB-COMPONENTS ============
 
 const Tag = memo(({ tag }) => (
-  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 bg-white/5 border border-white/10 rounded-full text-gray-300">
+  <span className="text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs 
+    font-bold uppercase tracking-wider 
+    px-2 xs:px-2.5 sm:px-3 py-0.5 xs:py-1 
+    bg-white/5 border border-white/10 rounded-full text-gray-300">
     {tag}
   </span>
 ));
@@ -61,8 +64,8 @@ Tag.displayName = 'Tag';
 
 const Stat = memo(({ stat }) => (
   <div className="text-center">
-    <div className="text-xl md:text-2xl font-bold">{stat.value}</div>
-    <div className="text-[10px] uppercase text-gray-500 tracking-wider">{stat.label}</div>
+    <div className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold">{stat.value}</div>
+    <div className="text-[8px] xs:text-[9px] sm:text-[10px] uppercase text-gray-500 tracking-wider">{stat.label}</div>
   </div>
 ));
 Stat.displayName = 'Stat';
@@ -71,25 +74,24 @@ const NavButton = memo(({ direction, onClick, disabled }) => (
   <button 
     onClick={onClick}
     disabled={disabled}
-    className="w-14 h-14 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:text-black disabled:opacity-50 active:scale-95"
+    className="w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 md:w-14 md:h-14
+      rounded-full border border-white/10 bg-white backdrop-blur-sm
+      flex items-center justify-center text-black
+      hover:bg-black/20 hover:text-white
+      disabled:opacity-50 active:scale-95
+      transition-all duration-200"
     style={{
-      transition: 'background-color 0.2s ease, color 0.2s ease, transform 0.1s ease',
       transform: 'translateZ(0)',
     }}
     aria-label={direction === 'prev' ? 'Previous Project' : 'Next Project'}
   >
-    {direction === 'prev' ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
+    {direction === 'prev' ?
+      <ArrowLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" /> :
+      <ArrowRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+    }
   </button>
 ));
 NavButton.displayName = 'NavButton';
-
-const LiveBadge = memo(() => (
-  <div className="absolute top-6 right-6 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 border border-white/10 z-10">
-    <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-    <span className="text-xs font-bold uppercase tracking-wider">Live Preview</span>
-  </div>
-));
-LiveBadge.displayName = 'LiveBadge';
 
 // ============ MAIN COMPONENT ============
 
@@ -146,7 +148,7 @@ const FeatureWork = () => {
 
   return (
     <div 
-      className="relative min-h-screen bg-[#111] text-white overflow-hidden font-sans selection:bg-white/20"
+      className="relative min-h-full lg:min-h-screen bg-[#111] text-white overflow-hidden font-sans selection:bg-white/20"
       style={{
         contain: 'layout style paint',
         isolation: 'isolate',
@@ -172,24 +174,76 @@ const FeatureWork = () => {
         aria-hidden="true"
       />
 
-      {/* Navbar */}
-      <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 flex justify-between items-center pointer-events-none">
-        <div className="text-xl font-bold tracking-tighter uppercase flex items-center gap-2 pointer-events-auto">
-          <div 
-            className={`w-3 h-3 rounded-full bg-gradient-to-r ${currentProject.accent}`}
-            style={{ transition: 'background 0.5s ease' }}
-          />
-          Agency<span className="text-gray-500">Portfolio</span>
-        </div>
-        <div className="text-xs font-mono text-gray-400">
-          0{currentIndex + 1} / 0{PROJECT_LENGTH}
+      {/* ============ RESPONSIVE NAVBAR ============ */}
+      <nav className="absolute top-0 left-0 right-0 z-50 
+        px-4 xs:px-5 sm:px-6 md:px-8 lg:px-12 
+        py-4 xs:py-5 sm:py-6 
+        pointer-events-none">
+        
+        <div className="pointer-events-auto flex flex-col items-center text-center gap-2 xs:gap-2.5 sm:gap-3 mx-auto max-w-4xl">
+
+          {/* BADGE */}
+          <span className="inline-flex items-center gap-1.5 xs:gap-2 
+            py-1 xs:py-1.5 px-2.5 xs:px-3 sm:px-4 
+            rounded-full bg-white/5 border border-white/10 
+            text-gray-300 
+            text-[9px] xs:text-[10px] sm:text-xs 
+            font-semibold tracking-wider">
+           
+            FEATURED WORK
+          </span>
+
+          {/* MAIN HEADING */}
+          <h2 className="flex flex-wrap items-center justify-center gap-1.5 xs:gap-2 
+            text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl 
+            font-bold tracking-tight uppercase">
+            <div
+              className={`w-2 h-2 xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 
+                rounded-full bg-gradient-to-r ${currentProject.accent} 
+                flex-shrink-0`}
+              style={{ transition: "background 0.5s ease" }}
+            />
+            <span>Showcase of</span>
+            <span className="text-gray-500">Excellence</span>
+          </h2>
+
+          {/* SUBTITLE */}
+          <p className="text-[10px] xs:text-xs sm:text-sm md:text-base 
+            text-gray-400 leading-relaxed 
+            max-w-[280px] xs:max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl
+            px-2 xs:px-0">
+            <span className="hidden xs:inline">
+              See how we turn bold ideas into powerful digital solutions that drive measurable impact.
+            </span>
+            <span className="xs:hidden">
+              Bold ideas into powerful digital solutions.
+            </span>
+          </p>
+
+          {/* Slide Counter - Visible on all screens */}
+          <div className="flex items-center gap-2 mt-1 xs:mt-2">
+            <div className="text-[10px] xs:text-xs sm:text-sm font-mono text-gray-500">
+              <span className="text-white font-bold">0{currentIndex + 1}</span>
+              <span className="mx-1">/</span>
+              <span>0{PROJECT_LENGTH}</span>
+            </div>
+          </div>
+
         </div>
       </nav>
 
       {/* Main Carousel Area */}
-      <div className="relative z-10 container mx-auto px-4 md:px-8 h-screen flex flex-col lg:flex-row items-center justify-center pt-20 lg:pt-0 gap-6 lg:gap-0">
+      <div className="relative z-10 container mx-auto 
+        px-4 xs:px-5 sm:px-6 md:px-8 
+        lg:h-screen 
+h-full  
+        flex flex-col lg:flex-row 
+        items-center justify-center 
+        pt-32 xs:pt-36 sm:pt-40 md:pt-44 lg:pt-24
+        pb-24 xs:pb-28 sm:pb-24 lg:pb-16
+        gap-4 xs:gap-5 sm:gap-6 lg:gap-0">
         
-        {/* ============ LEFT SIDE: CONTENT CARD (FIXED HEIGHT) ============ */}
+        {/* ============ LEFT SIDE: CONTENT CARD ============ */}
         <div 
           className="w-full lg:w-1/2 z-20"
           style={{
@@ -202,44 +256,54 @@ const FeatureWork = () => {
             backfaceVisibility: 'hidden',
           }}
         >
-          {/* 
-            FIXED HEIGHT CARD
-            - Mobile: h-[420px] 
-            - Desktop: h-[480px]
-            - Uses flex column with justify-between to distribute content
-          */}
           <div 
-            className="relative bg-black/40 border border-white/10 p-6 md:p-8 lg:p-10 rounded-3xl shadow-2xl lg:mr-[-80px] h-[420px] md:h-[460px] lg:h-[500px] flex flex-col"
+            className="relative bg-black/40 border border-white/10 
+              p-4 xs:p-5 sm:p-6 md:p-8 lg:p-10 
+              rounded-2xl xs:rounded-2xl sm:rounded-3xl 
+              shadow-2xl lg:mr-[-80px] 
+              h-[300px] xs:h-[320px] sm:h-[380px] md:h-[420px] lg:h-[460px] xl:h-[500px]
+              flex flex-col"
             style={{
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
+              backdropFilter: 'blur(1px)',
+              WebkitBackdropFilter: 'blur(1px)',
               transform: 'translateZ(0)',
               contain: 'layout style paint',
             }}
           >
             {/* Top Section - Tags */}
             <div className="flex-shrink-0">
-              <div className="flex flex-wrap gap-2 mb-4">
-                {currentProject.tags.map((tag, idx) => (
+              <div className="flex flex-wrap gap-1.5 xs:gap-2 mb-3 xs:mb-4">
+                {currentProject.tags.slice(0, 3).map((tag, idx) => (
                   <Tag key={idx} tag={tag} />
                 ))}
+                {currentProject.tags.length > 3 && (
+                  <span className="text-[8px] xs:text-[9px] sm:text-[10px] text-gray-500 self-center">
+                    +{currentProject.tags.length - 3}
+                  </span>
+                )}
               </div>
             </div>
 
-            {/* Middle Section - Title & Description (Flexible with overflow handling) */}
+            {/* Middle Section - Title & Description */}
             <div className="flex-1 flex flex-col justify-center min-h-0 overflow-hidden">
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 line-clamp-2">
+              <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
+                font-bold leading-tight mb-2 xs:mb-3 line-clamp-2">
                 {currentProject.title}
-              </h1>
-              <p className="text-sm md:text-base text-gray-400 max-w-md leading-relaxed line-clamp-3 md:line-clamp-4">
+              </h2>
+              <p className="text-xs xs:text-sm sm:text-sm md:text-base 
+                text-gray-400 max-w-md leading-relaxed 
+                line-clamp-2 xs:line-clamp-3 sm:line-clamp-3 md:line-clamp-4">
                 {currentProject.description}
               </p>
             </div>
 
-            {/* Bottom Section - Stats & CTA (Fixed at bottom) */}
+            {/* Bottom Section - Stats & CTA */}
             <div className="flex-shrink-0 mt-auto">
               {/* Stats Row */}
-              <div className="grid grid-cols-3 gap-4 md:gap-6 border-t border-white/10 pt-4 md:pt-6 mb-4 md:mb-6">
+              <div className="grid grid-cols-3 gap-2 xs:gap-3 sm:gap-4 md:gap-6 
+                border-t border-white/10 
+                pt-3 xs:pt-4 sm:pt-5 md:pt-6 
+                mb-3 xs:mb-4 sm:mb-5 md:mb-6">
                 {currentProject.stats.map((stat, idx) => (
                   <Stat key={idx} stat={stat} />
                 ))}
@@ -247,25 +311,35 @@ const FeatureWork = () => {
 
               {/* CTA Button */}
               <button 
-                className={`group flex items-center justify-center gap-3 w-full md:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r ${currentProject.accent} rounded-xl font-bold text-sm tracking-wide active:scale-95`}
+                className={`group flex items-center justify-center gap-2 xs:gap-3 
+                  w-full sm:w-auto 
+                  px-4 xs:px-5 sm:px-6 md:px-8 
+                  py-2.5 xs:py-3 sm:py-3.5 md:py-4 
+                  bg-gradient-to-r ${currentProject.accent} 
+                  rounded-lg xs:rounded-xl 
+                  font-bold text-xs xs:text-sm tracking-wide active:scale-95`}
                 style={{
                   transform: 'translateZ(0)',
                   transition: 'transform 0.15s ease',
                 }}
               >
                 <span>View Case Study</span>
-                <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform duration-200" />
+                <ArrowUpRight className="w-3 h-3 xs:w-4 xs:h-4 group-hover:rotate-45 transition-transform duration-200" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* ============ RIGHT SIDE: IMAGE CONTAINER (MATCHING HEIGHT) ============ */}
-        <div className="w-full lg:w-3/5 h-[300px] md:h-[400px] lg:h-[500px] relative">
+        {/* ============ RIGHT SIDE: IMAGE CONTAINER ============ */}
+        <div className="w-full lg:w-3/5 
+          h-[180px] xs:h-[200px] sm:h-[280px] md:h-[350px] lg:h-[460px] xl:h-[500px] 
+          relative">
           
           {/* Image Wrapper with Animation */}
           <div 
-            className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl border border-white/5"
+            className="relative w-full h-full 
+              rounded-xl xs:rounded-2xl sm:rounded-[1.5rem] md:rounded-[2rem] 
+              overflow-hidden shadow-2xl border border-white/5"
             style={{
               transform: isAnimating ? 'scale3d(0.95, 0.95, 1)' : 'scale3d(1, 1, 1)',
               opacity: isAnimating ? 0.5 : 1,
@@ -294,15 +368,25 @@ const FeatureWork = () => {
               aria-hidden="true"
             />
 
-            {/* Live Badge */}
-            <LiveBadge />
+            {/* Project Name Badge on Image */}
+            <div className="absolute bottom-3 left-3 xs:bottom-4 xs:left-4 sm:bottom-5 sm:left-5
+              bg-black/60 backdrop-blur-xs 
+              px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 
+              rounded-full border border-white/10">
+              <span className="text-[9px] xs:text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                {currentProject.client}
+              </span>
+            </div>
           </div>
 
           {/* Decorative Glow */}
           <div 
-            className={`absolute -inset-4 -z-10 bg-gradient-to-r ${currentProject.accent} rounded-[2.5rem] opacity-15 pointer-events-none`}
+            className={`absolute -inset-2 xs:-inset-3 sm:-inset-4 -z-10 
+              bg-gradient-to-r ${currentProject.accent} 
+              rounded-2xl xs:rounded-[2rem] sm:rounded-[2.5rem] 
+              opacity-15 pointer-events-none`}
             style={{
-              filter: 'blur(40px)',
+              filter: 'blur(30px)',
               transform: 'translateZ(0)',
               transition: 'background 0.8s ease',
             }}
@@ -312,23 +396,33 @@ const FeatureWork = () => {
 
       </div>
 
-      {/* Navigation Controls */}
-      <div className="absolute bottom-8 right-8 lg:bottom-12 lg:right-24 flex gap-4 z-30">
+      {/* ============ NAVIGATION CONTROLS ============ */}
+      <div className="absolute 
+        bottom-6 xs:bottom-8 sm:bottom-10 md:bottom-12 
+        left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 lg:right-24 
+        flex items-center gap-3 xs:gap-4 z-30">
+        
+        {/* Previous Button */}
         <NavButton direction="prev" onClick={handlePrev} disabled={isAnimating} />
+        
+        {/* Current Slide Indicator - Mobile Only */}
+        <div className="flex lg:hidden items-center gap-1.5">
+          {PROJECT_DATA.map((_, idx) => (
+            <div 
+              key={idx}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                idx === currentIndex 
+                  ? `w-6 bg-gradient-to-r ${currentProject.accent}` 
+                  : 'w-1.5 bg-white/20'
+              }`}
+            />
+          ))}
+        </div>
+        
+        {/* Next Button */}
         <NavButton direction="next" onClick={handleNext} disabled={isAnimating} />
       </div>
 
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10">
-        <div 
-          className={`h-full bg-gradient-to-r ${currentProject.accent} origin-left`}
-          style={{ 
-            transform: `scaleX(${(currentIndex + 1) / PROJECT_LENGTH})`,
-            transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-            willChange: 'transform',
-          }}
-        />
-      </div>
 
     </div>
   );

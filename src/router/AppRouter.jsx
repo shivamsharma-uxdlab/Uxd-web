@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home/Home';
 import About from '../pages/About';
-import Services from '../pages/Services';
+import Services from '../pages/Home/Services';
 import CaseStudies from '../pages/CaseStudies';
 import Industries from '../pages/Industries';
 import Insights from '../pages/Insights';

@@ -6,10 +6,13 @@ import TrustedBy from './TrustedBy'
 import WhyUs from './WhyUs'
 import Testimonials from './Testimonials'
 import StrategicPath from './StrategicPath'
-import Services from '../Services'
+import Services from './Services'
 import AwardsSection from './AwardsSection'
 import MediaMentionsSection from './MediaMentionsSection'
 import FeatureWork from './FeatureWork'
+ 
+import WhyChooseUs from './WhyChooseUs'
+import OurPartners from './OurPartners'
  
 
 const Home = () => {
@@ -25,11 +28,14 @@ const Home = () => {
    <StrategicPath />
      {/* <Hero2 /> */}
       <TrustedBy />
+       <FeatureWork />
       <Services />
         {/* <Partners /> */}
-        {/* <AwardsSection /> */}
+        <AwardsSection />
         {/* <MediaMentionsSection /> */}
-        <FeatureWork />
+        <WhyChooseUs />
+        <OurPartners />
+       
    </>
   )
 }

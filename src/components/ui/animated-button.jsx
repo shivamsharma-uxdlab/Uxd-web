@@ -20,7 +20,7 @@ const AnimatedButton = React.forwardRef((
   const variants = {
     primary: 'bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--secondary)] hover:to-[var(--primary)] text-white shadow-lg hover:shadow-xl',
     secondary: 'bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-900 shadow-md hover:shadow-lg',
-    outline: 'border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)]/10 hover:border-[var(--secondary)] hover:text-[var(--secondary)]',
+    outline: 'border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)]/10  hover:text-[var(--secondary)]',
     ghost: 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
     danger: 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl',
   };

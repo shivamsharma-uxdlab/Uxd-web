@@ -2,23 +2,30 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Bot, Cloud, Smartphone, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import group157 from '/src/assets/images/Group-157.webp';
-import group158 from '/src/assets/images/Group-158.webp';
-import group159 from '/src/assets/images/Group-159.webp';
-import group160 from '/src/assets/images/Group-160.webp';
-import group161 from '/src/assets/images/Group-161.webp';
-import group162 from '/src/assets/images/Group-162.webp';
-import group163 from '/src/assets/images/Group-163.webp';
-import group165 from '/src/assets/images/Group-165.webp';
-import group166 from '/src/assets/images/Group-166.webp';
-import group167 from '/src/assets/images/Group-167.webp';
-import group168 from '/src/assets/images/Group-168.webp';
+import awsPartnerCloudOps from '../../assets/marquieImages/aws-partner-cloud-operations-competerncy.webp';
+import awsPartnerSecurity from '../../assets/marquieImages/aws-partner-security-services-competency-removebg-preview.webp';
+import awsPartner from '../../assets/marquieImages/aws-partner.webp';
+import cbso from '../../assets/marquieImages/cbso.webp';
+import datadog from '../../assets/marquieImages/datadog-wordmark.webp';
+import forbes from '../../assets/marquieImages/forbes.webp';
+import googleBestApp from '../../assets/marquieImages/google-best-app.webp';
+import ibmPartner from '../../assets/marquieImages/ibm-business-partner.webp';
+import iso from '../../assets/marquieImages/iso.webp';
+import microsoft from '../../assets/marquieImages/microsoft.webp';
+import mixpanel from '../../assets/marquieImages/mixpanel.webp';
+import soc2 from '../../assets/marquieImages/soc2.webp';
+import topAppDev from '../../assets/marquieImages/top-app-dev-company.webp';
+import topGenAiFinal from '../../assets/marquieImages/top-genai-company-final.webp';
+import topGenAi from '../../assets/marquieImages/top-genai-company.webp';
+import webby from '../../assets/marquieImages/webby.webp';
+import xamarin from '../../assets/marquieImages/xamarin.webp';
 
 // CSS for smooth marquee - add this to your CSS file
 const marqueeStyles = `
   .marquee-container {
     overflow: hidden;
     width: 100%;
+    background: rgba(255, 255, 255, 0.8);
   }
   
   .marquee-track {
@@ -42,7 +49,7 @@ const marqueeStyles = `
   
   .marquee-logo {
     flex-shrink: 0;
-    height: 80px;
+    height: 25px;
     width: auto;
     margin: 0 24px;
     object-fit: contain;
@@ -50,26 +57,33 @@ const marqueeStyles = `
 
   @media (min-width: 768px) {
     .marquee-logo {
-      height: 100px;
+      height: 32px;
       margin: 0 32px;
     }
   }
 `;
 
 const Hero = () => {
-  const gradients = useMemo(() => [
-    'linear-gradient(to bottom right, #FF69B4, #C71585)',
-    'linear-gradient(to bottom, #FF6347, #DC143C)',
-    'linear-gradient(to right, #FF1493, #8B0000)',
-    'linear-gradient(to bottom left, #DB7093, #FF69B4)',
-  ], []);
+const gradients = useMemo(() => [
+  // Pink (dark → light)
+  'linear-gradient(90deg, #9a0079 0%, #d500a8 100%)',
+
+  // Red (dark → light)
+  'linear-gradient(90deg, #b30026 0%, #ff0036 100%)',
+
+  // Purple (dark → light)
+  'linear-gradient(90deg, #5a00a1 0%, #8f00df 100%)',
+], []);
+
+
+
 
   const [currentGradient, setCurrentGradient] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentGradient((prev) => (prev + 1) % gradients.length);
-    }, 10000);
+    }, 7000);
     return () => clearInterval(interval);
   }, [gradients.length]);
 
@@ -83,8 +97,9 @@ const Hero = () => {
 
   // Memoized marquee images
   const marqueeImages = useMemo(() => [
-    group157, group158, group159, group160, group161,
-    group162, group163, group165, group166, group167, group168,
+    awsPartnerCloudOps, awsPartnerSecurity, awsPartner, cbso, datadog,
+    forbes, googleBestApp, ibmPartner, iso, microsoft, mixpanel,
+    soc2, topAppDev, topGenAiFinal, topGenAi, webby, xamarin,
   ], []);
 
   // Only duplicate twice for seamless loop
@@ -199,15 +214,7 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
-          <motion.div variants={itemVariants} className="mb-2 md:mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/50 backdrop-blur-md border border-pink-200 hover:border-pink-400/80 transition-colors duration-300">
-              <Sparkles className="w-4 h-4 text-pink-600 animate-spin" style={{ animationDuration: '3s' }} />
-              <span className="text-xs md:text-sm font-semibold text-gray-300">
-                AI-Powered Innovation
-              </span>
-            </div>
-          </motion.div>
+  
 
           {/* Main Heading */}
           <motion.div
@@ -219,7 +226,7 @@ const Hero = () => {
                 Transforming visions into
               </span>
               <br />
-              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent p-0 md:p-2 text-3xl md:text-5xl font-bold">
+              <span className=" text-white p-0 md:p-2 text-3xl md:text-5xl font-bold">
                 Cutting-Edge AI-Driven
               </span>
               <br />
@@ -268,7 +275,7 @@ const Hero = () => {
               {trustBadges.map((badge, i) => (
                 <div
                   key={i}
-                  className="text-xs font-semibold text-gray-300 px-2 md:px-4 py-2 bg-black/60 backdrop-blur-md rounded-full border border-pink-200/50 hover:border-pink-400 hover:scale-105 transition-all duration-300"
+                  className="text-xs font-semibold text-black px-2 md:px-4 py-2 bg-white backdrop-blur-md rounded-full border border-pink-200/50 hover:border-pink-400 hover:scale-105 transition-all duration-300"
                 >
                   ✓ {badge}
                 </div>
@@ -279,18 +286,18 @@ const Hero = () => {
 
         {/* Partners Marquee - Pure CSS Animation */}
         <motion.div
-          className="absolute w-full bg-gradient-to-r from-primary via-secondary to-pink-400 overflow-hidden shadow-xl bottom-[4vh] md:bottom-[10vh]"
+          className="absolute w-full overflow-hidden bottom-[4vh] md:bottom-[10vh]"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
         >
-          <div className="marquee-container h-20 md:h-24 flex items-center">
+          <div className="marquee-container h-16 md:h-20 flex items-center">
             <div className="marquee-track">
               {duplicatedImages.map((image, i) => (
                 <img
                   key={i}
                   src={image}
-                  alt={`Partner logo ${(i % 11) + 1}`}
+                  alt={`Partner logo ${(i % marqueeImages.length) + 1}`}
                   className="marquee-logo h-auto"
                   loading="lazy"
                   decoding="async"

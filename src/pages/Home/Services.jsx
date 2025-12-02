@@ -13,53 +13,54 @@ import {
 const services = [
   {
     id: 1,
-    title: "Agentic AI, RAG & LLM Solutions",
-    description: "We build intelligent autonomous agents, retrieval-augmented generation systems, and large language models that transform business decision-making processes.",
+    title: "AI Automation & Intelligent Workflows",
+    description: "We design AI-driven automation pipelines, smart decision engines, and adaptive systems that streamline operations and unlock new business efficiencies.",
     icon: <Bot size={32} />,
     color: "from-purple-500 to-indigo-500",
     shadow: "shadow-purple-500/20"
   },
   {
     id: 2,
-    title: "Mobile & Web App Development",
-    description: "We create high-performance iOS, Android, and cross-platform applications with responsive web solutions that deliver exceptional user experiences.",
+    title: "Custom Web, Mobile & SaaS Platforms",
+    description: "We build scalable digital products, responsive interfaces, and high-performance applications tailored to deliver seamless user experiences across all devices.",
     icon: <Smartphone size={32} />,
     color: "from-blue-500 to-cyan-500",
     shadow: "shadow-blue-500/20"
   },
   {
     id: 3,
-    title: "IoT & Wearables",
-    description: "We develop connected device ecosystems with voice intelligence, data-driven insights, and real-time personalization for smart, responsive environments.",
+    title: "IoT Systems & Smart Device Integration",
+    description: "We create secure IoT ecosystems, real-time monitoring systems, and connected device solutions that offer intelligent automation and actionable insights.",
     icon: <Watch size={32} />,
     color: "from-emerald-500 to-teal-500",
     shadow: "shadow-emerald-500/20"
   },
   {
     id: 4,
-    title: "Cloud Modernization & DevSecOps",
-    description: "We migrate, optimize, and secure your infrastructure with cloud-native architectures, automated deployment pipelines, and enterprise-grade security protocols.",
+    title: "Cloud Engineering & Infrastructure Scaling",
+    description: "We architect and optimize cloud-native infrastructures with automated deployments, enterprise security layers, and performance-driven modernization.",
     icon: <CloudLightning size={32} />,
     color: "from-orange-500 to-red-500",
     shadow: "shadow-orange-500/20"
   },
   {
     id: 5,
-    title: "Team Augmentation & Managed Services",
-    description: "We accelerate development cycles with dedicated specialists, scale faster through flexible teams, and deliver fully managed development solutions.",
+    title: "Dedicated Teams & End-to-End Delivery",
+    description: "We provide expert engineering teams, rapid development support, and fully managed services to accelerate product delivery and reduce operational overhead.",
     icon: <Users size={32} />,
     color: "from-pink-500 to-rose-500",
     shadow: "shadow-pink-500/20"
   },
   {
     id: 6,
-    title: "Product Design & Strategy",
-    description: "We create human-centric UX/UI designs through strategic discovery, consultation sessions, and comprehensive product roadmaps that drive user engagement.",
+    title: "UX/UI Design & Product Strategy",
+    description: "We craft user-centric digital experiences supported by deep research, design systems, and strategic product roadmaps aligned with your business goals.",
     icon: <Palette size={32} />,
     color: "from-violet-500 to-fuchsia-500",
     shadow: "shadow-violet-500/20"
   }
 ];
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,7 +83,7 @@ const cardVariants = {
 
 const Services = () => {
   return (
-    <section className="relative min-h-screen bg-[#050505] text-white py-24 px-6 overflow-hidden">
+    <section className="relative min-h-screen bg-[#050505] text-white py-4 md:py-8 lg:py-16 sm:px-6 px-2 overflow-hidden">
       
       {/* Background Ambient Glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-900/20 rounded-full blur-[128px] pointer-events-none" />
@@ -108,7 +109,7 @@ const Services = () => {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500 max-w-4xl mx-auto leading-tight"
           >
-            Crafting digital excellence that drives business transformation forward
+           Building digital solutions that move businesses forward
           </motion.h2>
         </div>
 
