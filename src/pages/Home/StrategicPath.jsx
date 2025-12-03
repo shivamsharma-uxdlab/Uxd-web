@@ -201,7 +201,7 @@ const StrategicPath = () => {
     sm:text-3xl           /* small screens */
     md:text-3xl           /* tablets */
     lg:text-4xl           /* laptops */
-    xl:text-[3rem]   
+    2xl:text-[3rem]   
          /* large desktops */
     font-bold text-slate-900 
     mb-3 sm:mb-4 

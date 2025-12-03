@@ -266,7 +266,7 @@ const gradients = useMemo(() => [
           {/* Trust Badges */}
           <motion.div
             variants={itemVariants}
-            className="pt-1 md:pt-10 border-t border-pink-200/50 mb-10 md:mb-0"
+            className="pt-1 md:pt-4 2xl:pt-10 border-t border-pink-200/50 mb-10 2xl:mb-0"
           >
             <p className="text-sm text-gray-400 mb-4 uppercase tracking-wider font-semibold">
               Trusted by Industry Leaders
@@ -291,7 +291,7 @@ const gradients = useMemo(() => [
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
         >
-          <div className="marquee-container h-16 md:h-20 flex items-center">
+          <div className="marquee-container h-14 2xl:h-16 flex items-center">
             <div className="marquee-track">
               {duplicatedImages.map((image, i) => (
                 <img

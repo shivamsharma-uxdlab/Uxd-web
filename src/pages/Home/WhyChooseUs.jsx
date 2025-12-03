@@ -5,53 +5,62 @@ import { ChevronRight, Star, Shield, Zap, Globe, Users, TrendingUp, Cpu, Layers,
 const contentData = [
   {
     id: "01",
-    title: "User-Centric Methodology",
-    description: "We don't just guess; we validate. Our rigorous user research and persona mapping ensure every pixel serves a specific user need, reducing friction and boosting retention.",
-    icon: <Users className="w-6 h-6 text-cyan-400" />
+    title: "Lightning-Fast Product Acceleration",
+    description:
+      "Launch ideas into the market 40–60% faster with our parallelized workflows, agile squads, and optimized product engineering pipelines designed for uncompromised speed and stability.",
+    icon: <TrendingUp className="w-6 h-6 text-cyan-400" />,
   },
   {
     id: "02",
-    title: "Data-Driven Design Decisions",
-    description: "Move beyond subjectivity. We leverage heatmaps, A/B testing, and behavioral analytics to craft interfaces that are scientifically proven to convert.",
-    icon: <TrendingUp className="w-6 h-6 text-purple-400" />
+    title: "Enterprise-Grade Architecture from Sprint Zero",
+    description:
+      "Every solution is engineered with the rigor of a Fortune 500 product—modular, compliant, observable, resilient, and optimized for long-term scalability from the very first commit.",
+    icon: <Layers className="w-6 h-6 text-purple-400" />,
   },
   {
     id: "03",
-    title: "Scalable Design Systems",
-    description: "We build atomic design libraries that ensure consistency across your entire product ecosystem, drastically reducing design debt and accelerating development velocity.",
-    icon: <LayoutTemplate className="w-6 h-6 text-blue-400" />
+    title: "Cloud-Native & API-First Engineering",
+    description:
+      "From microservices to event-driven ecosystems, we build cloud-optimized architectures that integrate seamlessly across AWS, Azure, GCP, legacy platforms, and hybrid infrastructures.",
+    icon: <Globe className="w-6 h-6 text-blue-400" />,
   },
   {
     id: "04",
-    title: "Accessibility & Inclusion First",
-    description: "Inclusive design isn't an afterthought. We ensure your digital products are WCAG compliant, expanding your market reach to users of all abilities from day one.",
-    icon: <Eye className="w-6 h-6 text-green-400" />
+    title: "High-Performance Dedicated Delivery Pods",
+    description:
+      "Our multidisciplinary teams embed into your workflow like an internal unit—aligning product strategy, design, and engineering to accelerate execution with laser-focused ownership.",
+    icon: <Users className="w-6 h-6 text-green-400" />,
   },
   {
     id: "05",
-    title: "Rapid Prototyping & Iteration",
-    description: "Visualize ideas instantly. Our high-fidelity interactive prototypes allow stakeholders to touch and feel the product before a single line of code is written.",
-    icon: <Zap className="w-6 h-6 text-pink-400" />
+    title: "Predictable Velocity & Guaranteed Output",
+    description:
+      "With a proven global delivery model and a 96% milestone adherence rate, we ensure every release is timely, stable, and engineered with precision—no bottlenecks, no surprises.",
+    icon: <Star className="w-6 h-6 text-yellow-400" />,
   },
   {
     id: "06",
-    title: "Cognitive Psychology Integration",
-    description: "We apply principles of cognitive load and behavioral economics to guide users intuitively through complex flows, making difficult tasks feel effortless.",
-    icon: <MousePointer2 className="w-6 h-6 text-yellow-400" />
+    title: "Security-Embedded, Performance-Driven Systems",
+    description:
+      "From zero-trust architectures to automated DevSecOps, SOC2/HIPAA-grade compliance, and high-load performance tuning, we build platforms ready for global scale and audit demands.",
+    icon: <Shield className="w-6 h-6 text-red-400" />,
   },
   {
     id: "07",
-    title: "Seamless Developer Handoff",
-    description: "We speak code. Our designs are delivered with pixel-perfect specifications, assets, and documentation that developers love, ensuring nothing gets lost in translation.",
-    icon: <Code2 className="w-6 h-6 text-orange-400" />
+    title: "AI Solutions That Drive Real Business Outcomes",
+    description:
+      "We build production-grade LLM solutions, RAG pipelines, autonomous AI agents, and predictive systems that reduce operational load and unlock intelligence across your organization.",
+    icon: <Cpu className="w-6 h-6 text-orange-400" />,
   },
   {
     id: "08",
-    title: "Omnichannel Experience",
-    description: "Whether on a smartwatch, a kiosk, or a 4K desktop, we craft adaptive experiences that maintain brand integrity and usability across every touchpoint.",
-    icon: <Smartphone className="w-6 h-6 text-red-400" />
-  }
+    title: "Experience Design That Differentiates You",
+    description:
+      "We craft intuitive, emotionally resonant, multi-device experiences powered by design psychology, motion systems, and interaction science—making your product truly unforgettable.",
+    icon: <Palette className="w-6 h-6 text-pink-400" />,
+  },
 ];
+
 
 const ListItem = ({ item, index }) => {
   return (
@@ -114,7 +123,7 @@ export default function App() {
                   Why Choose Us
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-8 leading-tight">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-extrabold tracking-tight text-white mb-8 leading-tight">
                   Why global innovators build with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">UXDLab</span>
                 </h2>
                 

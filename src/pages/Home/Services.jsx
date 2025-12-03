@@ -107,7 +107,7 @@ const Services = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500 max-w-4xl mx-auto leading-tight"
+            className="text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500 max-w-4xl mx-auto leading-tight"
           >
            Building digital solutions that move businesses forward
           </motion.h2>

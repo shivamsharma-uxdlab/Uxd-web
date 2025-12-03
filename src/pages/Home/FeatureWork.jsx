@@ -369,7 +369,7 @@ h-full
             />
 
             {/* Project Name Badge on Image */}
-            <div className="absolute bottom-3 left-3 xs:bottom-4 xs:left-4 sm:bottom-5 sm:left-5
+            <div className="absolute bottom-3 left-3 xs:bottom-4 xs:left-6 sm:bottom-5 sm:left-24
               bg-black/60 backdrop-blur-xs 
               px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 
               rounded-full border border-white/10">

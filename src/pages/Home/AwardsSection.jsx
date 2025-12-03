@@ -181,10 +181,10 @@ const AwardsSection = () => {
             <h3 className="text-slate-600 font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-xs sm:text-sm mb-3 sm:mb-4">
               World Class Recognition
             </h3>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-slate-900 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-slate-900 leading-tight">
               Pioneering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]">Innovation</span>
               <br />
-              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-slate-700 font-medium">
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl text-slate-700 font-medium">
                 Since 2009
               </span>
             </h2>
