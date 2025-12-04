@@ -16,6 +16,7 @@ import OurPartners from './OurPartners'
 import Faqs from './Faqs'
 import Blogs from './Blogs'
 import Footer from './Footer'
+import FeaturedLogos from './FeaturedLogos'
  
 
 const Home = () => {
@@ -34,6 +35,7 @@ const Home = () => {
        <FeatureWork />
       <Services />
         {/* <Partners /> */}
+        <FeaturedLogos />
         <AwardsSection />
         {/* <MediaMentionsSection /> */}
         <WhyChooseUs />
